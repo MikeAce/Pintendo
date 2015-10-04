@@ -11,8 +11,10 @@
 #include <bcm2835.h>
 #include <errno.h>
 
+
 #include "RGBMatrixInclude/led-matrix.h"
 #include "SNESController.h"
+#include "LCDDisplay.h"
 
 #define RED       1
 #define GREEN     2
@@ -24,6 +26,7 @@ void exitProgram(void)
 {
     snesClose();
     rgbMatrixClose();
+    lcdClose ();
     bcm2835_close();
     exit(EXIT_SUCCESS);
 }
@@ -120,8 +123,7 @@ int main(int argc, char** argv) {
             fprintf(stderr, "Unable to setup bcm2835:%s\n",strerror(errno));
             return 1;
     }   
-    
-  
+     
     if(!rgbMatrixInit(32,1,1))
     {
         fprintf(stderr, "Unable to setup RGB Matrix:%s\n",strerror(errno));
@@ -139,26 +141,22 @@ int main(int argc, char** argv) {
     snesRegisterCallback(snesButton_Y, snesEvent_Released, &snesCb_Y_released);
     snesRegisterCallback(snesButton_Start, snesEvent_Pressed, &snesCb_Start);
     snesRegisterCallback(snesButton_Select, snesEvent_Pressed, &snesCb_Select);
-    snesStartPollButtonsAsync();
+    //snesStartPollButtonsAsync();
     
     rgbMatrixFill(RGBMAX, RGBMAX, RGBMAX);
     
-    srand (time(NULL));
-    int i, j;
+    lcdInit (2, 16, 0, 1, 2, 3, 4, 5);
+    lcdClear ();
+    bcm2835_delay (3000);
+    lcdPosition (0, 0) ; lcdPuts ("1: Paint") ;
+    bcm2835_delay (3000);
+    lcdPosition (0, 1) ; lcdPuts ("2: Snake") ;
+    
     while(1)
     {
         bcm2835_delay(100);  
-        
-        for(i=0; i<rgbMatrixHeight (); i++)
-            for(j=0; j<rgbMatrixWidth (); j++)
-              {
-                rgbMatrixSetPixel (i, j, rand(), rand(), rand());
-                bcm2835_delay(1);  
-              } 
-             
     }
     
-
     exitProgram();
 
     return (EXIT_SUCCESS);
