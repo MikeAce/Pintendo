@@ -15,13 +15,16 @@ all : $(BINARIES)
 $(RGB_LIBRARY):
 	$(MAKE) -C $(RGB_LIBDIR)
 
-pitendo : main.o SNESController.o $(RGB_LIBRARY)
-	$(CXX) $(CXXFLAGS) main.o SNESController.o -o $@ $(LDFLAGS)
+pitendo : main.o SNESController.o LCDDisplay.o $(RGB_LIBRARY)
+	$(CXX) $(CXXFLAGS) main.o SNESController.o LCDDisplay.o -o $@ $(LDFLAGS)
 
 main.o : main.c
 	$(CC) -c -o $@ $<
 
 SNESController.o : SNESController.c
+	$(CC) -c -o $@ $<
+
+LCDDisplay.o : LCDDisplay.c
 	$(CC) -c -o $@ $<
 
 clean:

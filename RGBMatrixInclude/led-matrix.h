@@ -184,7 +184,7 @@ private:
 
   internal::Framebuffer *const frame_;
 };
-}  // end namespace rgb_matrix
+
 GPIO io;
 Canvas *canvas_;
 
@@ -192,7 +192,7 @@ extern "C" int rgbMatrixInit(int rows, int chain, int parallel)
 {
   if (!io.Init())
     return 0;
-  canvas = new RGBMatrix(&io, rows, chain, parallel);
+  canvas_ = new RGBMatrix(&io, rows, chain, parallel);
   return 1;
 }
 
@@ -213,20 +213,22 @@ extern "C" void rgbMatrixFill(uint8_t red, uint8_t green, uint8_t blue)
   canvas_->Fill(red, green, blue);
 }
 
-extern "C" void rgbMatrixClear()
+extern "C" void rgbMatrixClear(void)
 {
   canvas_->Clear();
 }
 
-extern "C" int rgbMatrixWidth()
+extern "C" int rgbMatrixWidth(void)
 {
   return canvas_->height();
 }
 
-extern "C" rgbMatrixHeight()
+extern "C" int rgbMatrixHeight(void)
 {
   return canvas_->width();
 }
+
+}  // end namespace rgb_matrix
 
 #else //#ifdef __cplusplus
 
