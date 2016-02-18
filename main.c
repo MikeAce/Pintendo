@@ -104,13 +104,19 @@ void snesCb_X_released(void)
 void snesCb_Start(void)
 {
     if(snesIsButtonPressed(snesButton_Select))
+    {
+        printf("BYEBYE\n");
         exitProgram();
+    }
 }
 
 void snesCb_Select(void)
 {
     if(snesIsButtonPressed(snesButton_Start))
+    {
+        printf("BYEBYE\n");
         exitProgram();
+    }
 }
 int main(int argc, char** argv) {
 
@@ -123,13 +129,14 @@ int main(int argc, char** argv) {
             fprintf(stderr, "Unable to setup bcm2835:%s\n",strerror(errno));
             return 1;
     }   
-     
-    if(!rgbMatrixInit(32,1,1))
+   
+    if(!rgbMatrixInit(32,1,2))
     {
         fprintf(stderr, "Unable to setup RGB Matrix:%s\n",strerror(errno));
         return 1;
     }    
     
+/*
     snesInit();
     snesRegisterCallback(snesButton_B, snesEvent_Pressed, &snesCb_B_pressed);
     snesRegisterCallback(snesButton_A, snesEvent_Pressed, &snesCb_A_pressed);
@@ -142,19 +149,36 @@ int main(int argc, char** argv) {
     snesRegisterCallback(snesButton_Start, snesEvent_Pressed, &snesCb_Start);
     snesRegisterCallback(snesButton_Select, snesEvent_Pressed, &snesCb_Select);
     //snesStartPollButtonsAsync();
+*/
+
+    //rgbMatrixFill(RGBMAX, RGBMAX, RGBMAX);
     
-    rgbMatrixFill(RGBMAX, RGBMAX, RGBMAX);
+    srand(time(NULL));
     
+    int i;
+    double r = 14.3;
+    double Pi = 3.141592653;
+    for(r=1.3; r<15; r++)
+        for(i=0; i<360; i++)
+
+        {
+            double rad = (i) * Pi / 180.0;
+            printf("Grad: %d,  x: %d y: %d\n", i, (int)(sin(rad)*r), (int)(cos(rad)*r));
+            rgbMatrixSetPixel(32 + (sin(rad)*r), 16 + (cos(rad)*r), rand(), rand(), rand());
+            bcm2835_delay(5);
+        }
+/*
     lcdInit (2, 16, 0, 1, 2, 3, 4, 5);
     lcdClear ();
     bcm2835_delay (3000);
     lcdPosition (0, 0) ; lcdPuts ("1: Paint") ;
     bcm2835_delay (3000);
     lcdPosition (0, 1) ; lcdPuts ("2: Snake") ;
+*/
     
     while(1)
     {
-        bcm2835_delay(100);  
+        bcm2835_delay(1000);  
     }
     
     exitProgram();

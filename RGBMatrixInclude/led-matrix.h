@@ -24,6 +24,7 @@
 
 #include <stdint.h>
 #include <vector>
+#include <iostream>
 
 #include "gpio.h"
 #include "canvas.h"
@@ -210,6 +211,7 @@ extern "C" void rgbMatrixSetPixel(int x, int y,
 
 extern "C" void rgbMatrixFill(uint8_t red, uint8_t green, uint8_t blue)
 {
+    std::cout<<"Juppi"<<std::endl;
   canvas_->Fill(red, green, blue);
 }
 
@@ -232,7 +234,7 @@ extern "C" int rgbMatrixHeight(void)
 
 #else //#ifdef __cplusplus
 
-#define RGBMAX  256
+#define RGBMAX  255
 
 extern int rgbMatrixInit(int rows, int chain, int parallel);
 
