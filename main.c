@@ -158,15 +158,22 @@ int main(int argc, char** argv) {
     int i;
     double r = 14.3;
     double Pi = 3.141592653;
-    for(r=1.3; r<15; r++)
+    while(1)
+    {
+        rgbMatrixFill(rand(), rand(), rand());
+        int r = rand();
+        int g = rand();
+        int b = rand();
+    for(r=1.3; r<36; r++)
         for(i=0; i<360; i++)
 
         {
             double rad = (i) * Pi / 180.0;
-            printf("Grad: %d,  x: %d y: %d\n", i, (int)(sin(rad)*r), (int)(cos(rad)*r));
-            rgbMatrixSetPixel(32 + (sin(rad)*r), 16 + (cos(rad)*r), rand(), rand(), rand());
-            bcm2835_delay(5);
+            //printf("Grad: %d,  x: %d y: %d\n", i, (int)(sin(rad)*r), (int)(cos(rad)*r));
+            rgbMatrixSetPixel(32 + (sin(rad)*r), 16 + (cos(rad)*r), r, g, b);
+            bcm2835_delayMicroseconds(300);
         }
+    }
 /*
     lcdInit (2, 16, 0, 1, 2, 3, 4, 5);
     lcdClear ();

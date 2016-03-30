@@ -211,7 +211,6 @@ extern "C" void rgbMatrixSetPixel(int x, int y,
 
 extern "C" void rgbMatrixFill(uint8_t red, uint8_t green, uint8_t blue)
 {
-    std::cout<<"Juppi"<<std::endl;
   canvas_->Fill(red, green, blue);
 }
 
