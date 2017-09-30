@@ -19,7 +19,7 @@ void snesInit(void)
     bcm2835_gpio_fsel(gpioSnesData, BCM2835_GPIO_FSEL_INPT);
 
     bcm2835_gpio_write(gpioSnesClock, HIGH);
-    
+
     int i;
     for(i=0; i<12; i++)
         buttonStatesLast[i] = 0;
@@ -27,6 +27,7 @@ void snesInit(void)
 
 void snesClose(void)
 {
+    snesStopPollButtonsAsync();
     bcm2835_gpio_write(gpioSnesClock, LOW);
     bcm2835_gpio_write(gpioSnesLatch, LOW);
     bcm2835_gpio_fsel(gpioSnesClock, BCM2835_GPIO_FSEL_INPT);
@@ -49,13 +50,13 @@ int snesIsButtonPressed(SnesButton Button)
 void getButtons(void)
 {
     int i;
-    
+
     while(updateState == 1)
     {
-        bcm2835_gpio_write(gpioSnesLatch, HIGH);   
+        bcm2835_gpio_write(gpioSnesLatch, HIGH);
         bcm2835_delayMicroseconds(12);
         bcm2835_gpio_write(gpioSnesLatch, LOW);
-        
+
         bcm2835_delayMicroseconds(6);
         buttonStatesAct[0] = !bcm2835_gpio_lev(gpioSnesData);
         for(i=1; i<16; i++)
@@ -66,7 +67,7 @@ void getButtons(void)
             bcm2835_delayMicroseconds(6);
             buttonStatesAct[i] = !bcm2835_gpio_lev(gpioSnesData);
         }
-        
+
         for(i=0; i<12; i++)
         {
             if(buttonStatesAct[i] && (!buttonStatesLast[i]) && (callbacks_pressed[i] != NULL))
@@ -75,10 +76,10 @@ void getButtons(void)
                 (*(callbacks_released[i]))();
             buttonStatesLast[i] = buttonStatesAct[i];
         }
-        
+
         bcm2835_delay(16);
     }
-   
+
 }
 
 int snesStartPollButtonsAsync(void)
@@ -91,4 +92,4 @@ void snesStopPollButtonsAsync(void)
 {
     updateState = 0;
 }
-    
+

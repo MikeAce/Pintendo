@@ -1,6 +1,6 @@
 CXXFLAGS=-Wall #-O3 -g
-OBJECTS=main.o
-BINARIES=pitendo
+OBJECTS=main.o SNESController.o LCDDisplay.o
+BINARIES=pintendo
 
 # Where our library resides. It is split between includes and the binary
 # library in lib
@@ -15,7 +15,7 @@ all : $(BINARIES)
 $(RGB_LIBRARY):
 	$(MAKE) -C $(RGB_LIBDIR)
 
-pitendo : main.o SNESController.o LCDDisplay.o $(RGB_LIBRARY)
+pintendo : main.o SNESController.o LCDDisplay.o $(RGB_LIBRARY)
 	$(CXX) $(CXXFLAGS) main.o SNESController.o LCDDisplay.o -o $@ $(LDFLAGS)
 
 main.o : main.c
