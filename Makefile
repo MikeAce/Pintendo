@@ -1,5 +1,6 @@
 CXXFLAGS=-Wall #-O3 -g
-OBJECTS=main.o SNESController.o LCDDisplay.o
+OBJECTS=main.o
+LIBOBJECTS=SNESController.o LCDDisplay.o
 BINARIES=pintendo
 
 # Where our library resides. It is split between includes and the binary
@@ -29,4 +30,7 @@ LCDDisplay.o : LCDDisplay.c
 
 clean:
 	rm -f $(OBJECTS) $(BINARIES)
+
+proper : clean
+	rm -f $(LIBOBJECTS)
 	$(MAKE) -C $(RGB_LIBDIR) clean

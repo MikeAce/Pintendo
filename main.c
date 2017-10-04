@@ -51,16 +51,17 @@ void draw()
 
 void snesCb_B_pressed(void)
 {
-
+    printf("+B");
 }
 
 void snesCb_B_released(void)
 {
-
+    printf("-B");
 }
 
 void snesCb_A_pressed(void)
 {
+    printf("+A");
     if(snesIsButtonPressed(snesButton_L1))
         colVertical = RED;
     if(snesIsButtonPressed(snesButton_R1))
@@ -70,11 +71,12 @@ void snesCb_A_pressed(void)
 
 void snesCb_A_released(void)
 {
-
+    printf("-A");
 }
 
 void snesCb_Y_pressed(void)
 {
+    printf("+Y");
     if(snesIsButtonPressed(snesButton_L1))
         colVertical = GREEN;
     if(snesIsButtonPressed(snesButton_R1))
@@ -84,11 +86,12 @@ void snesCb_Y_pressed(void)
 
 void snesCb_Y_released(void)
 {
-
+    printf("-Y");
 }
 
 void snesCb_X_pressed(void)
 {
+    printf("+X");
     if(snesIsButtonPressed(snesButton_L1))
         colVertical = BLUE;
     if(snesIsButtonPressed(snesButton_R1))
@@ -98,11 +101,12 @@ void snesCb_X_pressed(void)
 
 void snesCb_X_released(void)
 {
-
+    printf("-X");
 }
 
 void snesCb_Start_pressed(void)
 {
+    printf("+Start");
     if(snesIsButtonPressed(snesButton_Select))
     {
         printf("BYEBYE\n");
@@ -112,11 +116,12 @@ void snesCb_Start_pressed(void)
 
 void snesCb_Start_released(void)
 {
-
+    printf("-Start");
 }
 
 void snesCb_Select_pressed(void)
 {
+    printf("+Select");
     if(snesIsButtonPressed(snesButton_Start))
     {
         printf("BYEBYE\n");
@@ -126,7 +131,7 @@ void snesCb_Select_pressed(void)
 
 void snesCb_Select_released(void)
 {
-
+    printf("-Select");
 }
 
 
@@ -173,16 +178,12 @@ int main(int argc, char** argv) {
     srand(time(NULL));
 
     int i;
-    double r = 14.3;
     double Pi = 3.141592653;
-    for(r=1.3; r<15; r++)
-        for(i=0; i<360; i++)
-
+        for(i=0; i<32*32; i++)
         {
-            double rad = (i) * Pi / 180.0;
-            printf("Grad: %d,  x: %d y: %d\n", i, (int)(sin(rad)*r), (int)(cos(rad)*r));
-            rgbMatrixSetPixel(32 + (sin(rad)*r), 16 + (cos(rad)*r), rand(), rand(), rand());
-            bcm2835_delay(5);
+            rgbMatrixSetPixel(i%32, i/32, 100,100,100);
+            bcm2835_delay(500);
+            rgbMatrixSetPixel(i%32, i/32, 0,0,0);
         }
 
 /* für LCD-Ansteuerung
@@ -199,7 +200,7 @@ int main(int argc, char** argv) {
     }
 
     exitProgram();
-
+    
     return (EXIT_SUCCESS);
 }
 
