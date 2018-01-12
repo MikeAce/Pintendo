@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   SNESController.h
  * Author: Andreas
  *
@@ -8,16 +8,17 @@
 #ifndef SNESCONTROLLER_H
 #define	SNESCONTROLLER_H
 
-#define gpioSnesClock 26
-#define gpioSnesLatch 16
-#define gpioSnesData  21
+#define gpioSnesClock 16
+#define gpioSnesLatch 26
+#define gpioSnesData0 14
+#define gpioSnesData1 15
 
 
 void snesInit(void);
 
 void snesClose(void);
 
-typedef enum 
+typedef enum
 {
     snesButton_B = 0,
     snesButton_Y,

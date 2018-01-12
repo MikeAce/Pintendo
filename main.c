@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   main.c
  * Author: Markus & Andreas
  *
@@ -51,17 +51,17 @@ void draw()
 
 void snesCb_B_pressed(void)
 {
-    printf("+B");
+    printf("+B\n");
 }
 
 void snesCb_B_released(void)
 {
-    printf("-B");
+    printf("-B\n");
 }
 
 void snesCb_A_pressed(void)
 {
-    printf("+A");
+    printf("+A\n");
     if(snesIsButtonPressed(snesButton_L1))
         colVertical = RED;
     if(snesIsButtonPressed(snesButton_R1))
@@ -71,12 +71,12 @@ void snesCb_A_pressed(void)
 
 void snesCb_A_released(void)
 {
-    printf("-A");
+    printf("-A\n");
 }
 
 void snesCb_Y_pressed(void)
 {
-    printf("+Y");
+    printf("+Y\n");
     if(snesIsButtonPressed(snesButton_L1))
         colVertical = GREEN;
     if(snesIsButtonPressed(snesButton_R1))
@@ -86,12 +86,12 @@ void snesCb_Y_pressed(void)
 
 void snesCb_Y_released(void)
 {
-    printf("-Y");
+    printf("-Y\n");
 }
 
 void snesCb_X_pressed(void)
 {
-    printf("+X");
+    printf("+X\n");
     if(snesIsButtonPressed(snesButton_L1))
         colVertical = BLUE;
     if(snesIsButtonPressed(snesButton_R1))
@@ -101,12 +101,12 @@ void snesCb_X_pressed(void)
 
 void snesCb_X_released(void)
 {
-    printf("-X");
+    printf("-X\n");
 }
 
 void snesCb_Start_pressed(void)
 {
-    printf("+Start");
+    printf("+Start\n");
     if(snesIsButtonPressed(snesButton_Select))
     {
         printf("BYEBYE\n");
@@ -116,12 +116,12 @@ void snesCb_Start_pressed(void)
 
 void snesCb_Start_released(void)
 {
-    printf("-Start");
+    printf("-Start\n");
 }
 
 void snesCb_Select_pressed(void)
 {
-    printf("+Select");
+    printf("+Select\n");
     if(snesIsButtonPressed(snesButton_Start))
     {
         printf("BYEBYE\n");
@@ -131,7 +131,7 @@ void snesCb_Select_pressed(void)
 
 void snesCb_Select_released(void)
 {
-    printf("-Select");
+    printf("-Select\n");
 }
 
 
@@ -167,7 +167,7 @@ int main(int argc, char** argv) {
     snesRegisterCallback(snesButton_Y, snesEvent_Released, &snesCb_Y_released);
     snesRegisterCallback(snesButton_Start, snesEvent_Released, &snesCb_Start_released);
     snesRegisterCallback(snesButton_Select, snesEvent_Released, &snesCb_Select_released);
-    //snesStartPollButtonsAsync();
+    snesStartPollButtonsAsync();
 
 // die callbacks sind registriert, jetzt müssen die Funktionen nur noch was sinnvolles machen...
 // je nach spiel, was gestartet wird (oder auch im Spiel: Menue, Game, ...), werden die callbacks
@@ -196,11 +196,11 @@ int main(int argc, char** argv) {
 */
     while(1)
     {
-        bcm2835_delay(1000);  
+        bcm2835_delay(1000);
     }
 
     exitProgram();
-    
+
     return (EXIT_SUCCESS);
 }
 

@@ -16,7 +16,8 @@ void snesInit(void)
 {
     bcm2835_gpio_fsel(gpioSnesClock, BCM2835_GPIO_FSEL_OUTP);
     bcm2835_gpio_fsel(gpioSnesLatch, BCM2835_GPIO_FSEL_OUTP);
-    bcm2835_gpio_fsel(gpioSnesData, BCM2835_GPIO_FSEL_INPT);
+    bcm2835_gpio_fsel(gpioSnesData0, BCM2835_GPIO_FSEL_INPT);
+    bcm2835_gpio_fsel(gpioSnesData1, BCM2835_GPIO_FSEL_INPT);
 
     bcm2835_gpio_write(gpioSnesClock, HIGH);
 
@@ -58,14 +59,14 @@ void getButtons(void)
         bcm2835_gpio_write(gpioSnesLatch, LOW);
 
         bcm2835_delayMicroseconds(6);
-        buttonStatesAct[0] = !bcm2835_gpio_lev(gpioSnesData);
+        buttonStatesAct[0] = !bcm2835_gpio_lev(gpioSnesData0);
         for(i=1; i<16; i++)
         {
             bcm2835_gpio_write(gpioSnesClock, LOW);
             bcm2835_delayMicroseconds(6);
             bcm2835_gpio_write(gpioSnesClock, HIGH);
             bcm2835_delayMicroseconds(6);
-            buttonStatesAct[i] = !bcm2835_gpio_lev(gpioSnesData);
+            buttonStatesAct[i] = !bcm2835_gpio_lev(gpioSnesData0);
         }
 
         for(i=0; i<12; i++)
