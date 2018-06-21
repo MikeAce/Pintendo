@@ -14,7 +14,7 @@
 
 #include "RGBMatrixInclude/led-matrix.h"
 #include "SNESController.h"
-#include "LCDDisplay.h"
+#include "LCDisplay.h"
 
 #define RED       1
 #define GREEN     2

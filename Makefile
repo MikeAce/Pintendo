@@ -1,6 +1,6 @@
 CXXFLAGS=-Wall #-O3 -g
 OBJECTS=main.o
-LIBOBJECTS=SNESController.o LCDDisplay.o
+LIBOBJECTS=SNESController.o LCDisplay.o
 BINARIES=pintendo
 
 # Where our library resides. It is split between includes and the binary
@@ -16,8 +16,8 @@ all : $(BINARIES)
 $(RGB_LIBRARY):
 	$(MAKE) -C $(RGB_LIBDIR)
 
-pintendo : main.o SNESController.o LCDDisplay.o $(RGB_LIBRARY)
-	$(CXX) $(CXXFLAGS) main.o SNESController.o LCDDisplay.o -o $@ $(LDFLAGS)
+pintendo : main.o SNESController.o LCDisplay.o $(RGB_LIBRARY)
+	$(CXX) $(CXXFLAGS) main.o SNESController.o LCDisplay.o -o $@ $(LDFLAGS)
 
 main.o : main.c
 	$(CC) -c -o $@ $<
@@ -25,7 +25,7 @@ main.o : main.c
 SNESController.o : SNESController.c
 	$(CC) -c -o $@ $<
 
-LCDDisplay.o : LCDDisplay.c
+LCDisplay.o : LCDisplay.c
 	$(CC) -c -o $@ $<
 
 clean:
@@ -34,3 +34,5 @@ clean:
 proper : clean
 	rm -f $(LIBOBJECTS)
 	$(MAKE) -C $(RGB_LIBDIR) clean
+
+cleanall : proper

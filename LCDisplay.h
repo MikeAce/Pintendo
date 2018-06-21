@@ -1,12 +1,12 @@
-/* 
- * File:   LCDDisplay.h
+/*
+ * File:   LCDisplay.h
  * Author: Andreas
  *
  * Created on 4. Oktober 2015, 14:27
  */
 
-#ifndef LCDDISPLAY_H
-#define	LCDDISPLAY_H
+#ifndef LCDISPLAY_H
+#define	LCDISPLAY_H
 
 extern void lcdHome        () ;
 extern void lcdClear       () ;
@@ -20,5 +20,5 @@ extern int  lcdInit (int rows, int cols, int rs, int strb,
 	int d4, int d5, int d6, int d7) ;
 extern int lcdClose();
 
-#endif	/* LCDDISPLAY_H */
+#endif	/* LCDISPLAY_H */
 

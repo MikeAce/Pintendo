@@ -4,7 +4,7 @@
 #include <stdarg.h>
 #include <bcm2835.h>
 
-#include "LCDDisplay.h"
+#include "LCDisplay.h"
 
 
 // Commands
@@ -40,12 +40,12 @@ char state;
 
 void writePCF8574(uint8_t pin, uint8_t level)
 {
-    
+
   if(level)
     state |= 1 << pin;
   else
     state &= ~(1 << pin);
-  
+
   bcm2835_i2c_write (&state, 1);
 }
 
@@ -92,7 +92,7 @@ static void sendDataCmd (uint8_t data)
       writePCF8574(dataPins [i], (d4 & 1)) ;
       d4 >>= 1 ;
     }
-  
+
   strobe () ;
 }
 
@@ -228,12 +228,12 @@ void lcdPrintf (char *message, ...)
 int lcdInit (int rows, int cols, int rs, int strb,
 	int d4, int d5, int d6, int d7)
 {
-  
+
   bcm2835_i2c_begin ();
   bcm2835_i2c_setSlaveAddress (0x3f);
   state = 0;
   bcm2835_i2c_write (&state, 1);
-  
+
   uint8_t func ;
   int i ;
 
@@ -287,7 +287,7 @@ int lcdInit (int rows, int cols, int rs, int strb,
     put4Command (func >> 4) ; bcm2835_delay (35) ;
     func = LCD_FUNC ;					// 4th set: 4-bit mode
     put4Command (func >> 4) ; bcm2835_delay (35) ;
-  
+
 
   if (rows > 1)
   {
