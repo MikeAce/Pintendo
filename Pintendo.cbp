@@ -20,10 +20,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="LCDDisplay.c">
+		<Unit filename="LCDisplay.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="LCDDisplay.h" />
+		<Unit filename="LCDisplay.h" />
 		<Unit filename="RGBMatrixInclude/canvas.h" />
 		<Unit filename="RGBMatrixInclude/gpio.h" />
 		<Unit filename="RGBMatrixInclude/graphics.h" />
@@ -48,10 +48,6 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="nbproject/private/c_standard_headers_indexer.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="nbproject/private/cpp_standard_headers_indexer.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
