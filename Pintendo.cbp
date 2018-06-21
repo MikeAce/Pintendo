@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Pintendo" />
+		<Option makefile_is_custom="1" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="all">
+				<Option output="pintendo" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="LCDDisplay.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="LCDDisplay.h" />
+		<Unit filename="RGBMatrixInclude/canvas.h" />
+		<Unit filename="RGBMatrixInclude/gpio.h" />
+		<Unit filename="RGBMatrixInclude/graphics.h" />
+		<Unit filename="RGBMatrixInclude/led-matrix.h" />
+		<Unit filename="RGBMatrixInclude/thread.h" />
+		<Unit filename="RGBMatrixInclude/threaded-canvas-manipulator.h" />
+		<Unit filename="RGBMatrixInclude/transformer.h" />
+		<Unit filename="RGBMatrixLib/bdf-font.cc" />
+		<Unit filename="RGBMatrixLib/framebuffer-internal.h" />
+		<Unit filename="RGBMatrixLib/framebuffer.cc" />
+		<Unit filename="RGBMatrixLib/gpio.cc" />
+		<Unit filename="RGBMatrixLib/graphics.cc" />
+		<Unit filename="RGBMatrixLib/led-matrix.cc" />
+		<Unit filename="RGBMatrixLib/thread.cc" />
+		<Unit filename="RGBMatrixLib/transformer.cc" />
+		<Unit filename="RGBMatrixLib/utf8-internal.h" />
+		<Unit filename="SNESController.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SNESController.h" />
+		<Unit filename="bcm2835.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nbproject/private/c_standard_headers_indexer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nbproject/private/cpp_standard_headers_indexer.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
